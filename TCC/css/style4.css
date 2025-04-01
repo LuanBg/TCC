@@ -57,12 +57,12 @@ body {
     height: 50px;
     max-width: 500px;
     padding: 12px 15px;
-    border: 1px solid #5EBC3C;
+    border: 1px solid #B2DF76;
     border-radius: 10px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #5EBC3C;
-    transition: background 0.3s ease;
+    background-color: #B2DF76;
+    transition: backgr*ound 0.3s ease;
 }
 
 .form-group button:hover {
