@@ -24,7 +24,6 @@
             <img src="images/logo.png" alt="Logo">
         </div>
 
-        <button type="button" name="nome">Excel</button>
         <button type="button" name="sobrenome">Download de Notas</button>
         <button type="button" name="email">Cadastro</button>
         <button onclick="window.location.href='configuracoes.php'">Configurações</button>
