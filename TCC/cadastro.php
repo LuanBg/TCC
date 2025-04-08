@@ -18,16 +18,12 @@
         <div class="tab active" id="tab-usuario">Usuário</div>
         <div class="tab" id="tab-admin" onclick="location.href='cadastroadm.php'">Administrador</div>
     </div>
-
+    
     <div class="form-group">
         <input type="text" name="nome" placeholder="Nome" required>
         <input type="text" name="sobrenome" placeholder="Sobrenome" required>
         <input type="email" name="email" placeholder="Email" required>
         <input type="text" name="cargo" placeholder="Cargo" required>
-        <input type="text" name="endereco" placeholder="Endereço" required>
-        <input type="text" name="nacionalidade" placeholder="Nacionalidade" required>
-        <input type="text" name="cidade" placeholder="Cidade" required>
-        <input type="text" name="cpf" placeholder="CPF" required>
     </div>
 
     <div class="form-actions">

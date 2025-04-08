@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configurações / Bomfim Contabilidade</title>
-    <link rel="stylesheet" href="css/style7.css">
+    <link rel="stylesheet" href="css/style5.css">
 </head>
 <body>
     <div class="user-info">
@@ -23,19 +23,17 @@
 </div>
     </div>
 
-<div class="content">
+    <div class="content">
     
-    <div class="logo">
-        <img src="images/logo.png" alt="Logo">
-    </div>
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo">
+        </div>
 
-    <div class="form-group">
-        <h2>Cadastor de Usuário</h2>
-        <input type="email" placeholder="Email">
-        <input type="text" placeholder="Senha">
-        
-        <button onclick="window.location.href='sobre.php'">Cadastra</button>
-   
+        <div class="form-group">
+            <h2>Configurações</h2>
+            <button onclick="window.location.href=''">Gerenciamento</button>
+            <button onclick="window.location.href='sobre.php'">Sobre</button>
+        </div>
 
     </div>
 <script src="js/script.js"></script> 
