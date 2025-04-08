@@ -32,31 +32,31 @@
         </div>
 
         <div class="projeto-box">
-            <h2>Nosso Projeto</h2>
+        <h2 style="text-align:center; margin-bottom:20px;">Nosso Projeto</h2>
             <div class="projeto-topo">
                 <div class="projeto-img">
-                    <img src="images/WhatsApp Image 2025-03-23 at 15.19.29.jpeg" alt="Imagem do Projeto" style="width:40%; height:auto; border-radius: 8px;">
+                    <img src="images/logo.png" alt="Imagem do Projeto" style="width:60%; height:auto; border-radius: 8px;">
                 </div>
                 <div class="projeto-texto">
                     <p>Este é o texto que descreve o projeto. Aqui você pode colocar uma explicação breve ou um resumo do seu trabalho.</p>
                 </div>
             </div>
-            <h3 style="text-align:center; margin-bottom:20px;">Integrantes</h3>
+            <h2 style="text-align:center; margin-bottom:20px;">Integrantes</h2>
             <div class="integrantes">
                 <div class="integrante-img">
-                    <img src="images/WhatsApp Image 2025-03-23 at 15.19.29.jpeg" alt="Integrante 1" style="width:120%; height:120%; border-radius: 8px;">
+                    <img src="images/use3-removebg-preview.png" alt="Integrante 4" style="width:150%; height:120%; border-radius: 8px;">
                     <p>Luan Borges</p>
                 </div>
                 <div class="integrante-img">
-                    <img src="images/WhatsApp Image 2025-03-23 at 15.19.29.jpeg" alt="Integrante 2" style="width:120%; height:120%; border-radius: 8px;">
+                    <img src="images/use3-removebg-preview.png" alt="Integrante 4" style="width:150%; height:120%; border-radius: 8px;">
                     <p>Breno</p>
                 </div>
                 <div class="integrante-img">
-                    <img src="images/WhatsApp Image 2025-03-23 at 15.19.29.jpeg" alt="Integrante 3" style="width:120%; height:120%; border-radius: 8px;">
+                    <img src="images/use3-removebg-preview.png" alt="Integrante 4" style="width:150%; height:120%; border-radius: 8px;">
                     <p>Alice</p>
                 </div>
                 <div class="integrante-img">
-                    <img src="images/WhatsApp Image 2025-03-23 at 15.19.29.jpeg" alt="Integrante 4" style="width:120%; height:120%; border-radius: 8px;">
+                    <img src="images/use3-removebg-preview.png" alt="Integrante 4" style="width:150%; height:120%; border-radius: 8px;">
                     <p>Samir</p>
                 </div>
             </div>

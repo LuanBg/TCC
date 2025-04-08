@@ -18,15 +18,12 @@
             <div class="tab" id="tab-usuario" onclick="location.href='cadastro.php'">Usuário</div>
             <div class="tab active" id="tab-admin">Administrador</div>
         </div>
+        
         <div class="form-group">
-            <input type="text" placeholder="Nome">
-            <input type="text" placeholder="Sobrenome">
-            <input type="email" placeholder="Email">
-            <input type="text" placeholder="Cargo">
-            <input type="text" placeholder="Endereço">
-            <input type="text" placeholder="Nacionalidade">
-            <input type="text" placeholder="Cidade">
-            <input type="text" placeholder="CPF">
+        <input type="text" name="nome" placeholder="Nome" required>
+        <input type="text" name="sobrenome" placeholder="Sobrenome" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="cargo" placeholder="Cargo" required>
         </div>
         <div class="form-actions">
             <button type="submit">Cadastrar</button>
