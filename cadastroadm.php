@@ -28,12 +28,10 @@
                 <input type="text" name="sobrenome" placeholder="Sobrenome" required>
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="text" name="senha" placeholder="senha" required>
-                <input type="text" name="cargo" placeholder="Cargo" required>
-                <select class="form-select" size="3" aria-label="Size 3 select example">
-                    <option selected>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                <select class="form-select form-select-lg mb-3" aria-label="Large select example">
+                    <option selected>Selecione o cargo</option>
+                    <option value="admin">Administrador</option>
+                    <option value="usuario">Usuario</option>
                 </select>
 
             </div>
