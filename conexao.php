@@ -1,9 +1,9 @@
 <?php
 $host = 'localhost';
-$port = '3307'; // Porta do seu MySQL
+$port = '3306'; // Porta do seu MySQL
 $db   = 'SistemaNotas';
 $user = 'root';
-$pass = 'breno'; // ou a senha correta, se você definiu uma
+$pass = 'cimatec'; // ou a senha correta, se você definiu uma
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";
