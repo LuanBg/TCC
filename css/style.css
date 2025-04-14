@@ -9,11 +9,10 @@ body {
     margin: 0;
 }
 .container {
-    width: 100%;
-    max-width: 500px;
+    width: 550px;
     height: 500px;
     background: white;
-    padding: 50px;
+    padding: 20px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     border-radius: 30px;
     text-align: center;
@@ -26,7 +25,7 @@ body {
     margin-bottom: 20px;
 }
 .login-card input {
-    width: 90%;
+    width: 70%;
     padding: 15px;
     margin: 10px 0;
     border: 1px solid #ccc;
@@ -42,15 +41,16 @@ body {
     display: flex;
 }
 .login-card button {
-    width: 50%;
-    padding: 15px;
+    width: 30%;
+    height: 40px;
+    padding: 10px;
     background: #5EBC3C;
     border: none;
     color: white;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     border-radius: 10px;
-    margin-top: 20px;
+    margin-top: 30px;
     font-weight: bold;
     transition: background 0.3s ease;
 }

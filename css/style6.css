@@ -1,98 +1,65 @@
 body {
     font-family: Arial, sans-serif;
-    overflow: hidden;
     margin: 0;
     padding: 0;
+    min-height: 100vh;
     display: flex;
-    align-items: stretch;
-    height: 100vh;
-    background: url(../images/fundo.avif) no-repeat center center fixed;
-    background-size: cover;
-}
-
-.user-info {
-    width: 25%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    color: white;
-    padding: 100px 20px 20px; 
-    justify-content: flex-start;
-}
-
-.user-info img {
-    width: 250px;
-    margin-bottom: 20px;
-}
-
-.user-info h3 {
-    margin: 0;
-    font-weight: normal;
-    font-size: 1.2rem;
-}
-
-.content {
-    width: 115%;
-    background: white;
-    padding: 0;
-    border-radius: 30px 0 0 30px;
-    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    align-items: center;
+    background-size: cover;
     position: relative;
+    background-color: #fff;
 }
 
 .logo {
-    display: flex;
-    justify-content: flex-start;
-    padding: 30px;
-    width: 100%;
-    margin: 0;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 170px; 
 }
 
-.logo img {
-    width: 200px;
-    height: auto;
+.btn-sair,
+.btn-config {
+    width: 90px;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: #fff; 
+}
+
+
+.btn-sair img,
+.btn-config img {
+    width: 80% !important;
+    height: 80% !important;
+    object-fit: contain; 
     display: block;
 }
 
-.actions {
+.top-buttons {
+    position: absolute;
+    top: 20px;
+    right: 10px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 370px; 
 }
 
-.back, .logout {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.back img, .logout img {
-    width: 60px;
-    height: 60px;
-}
-
-.back a, .logout a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.back a:hover, .logout a:hover {
-    text-decoration: underline;
+.top-buttons a img {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
 }
 
 .projeto-box {
     background: #b6e27f;
     border-radius: 20px;
-    padding: 50px;
-    width: 90%;
-    padding: 60px 10px;
-    margin: 0 auto;
+    padding: 60px 40px;
+    width: 95%;
+    max-width: 1100px; 
+    min-height: 600px;  
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 

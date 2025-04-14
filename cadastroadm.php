@@ -11,35 +11,35 @@
 </head>
 
 <body>
-    <div class="user-info">
-        <img src="images/use3-removebg-preview.png" alt="User">
-        <h3>ADMINISTRADOR</h3>
-    </div>
+
+    <img src="images/logo.png" alt="Logo Bomfim Contabilidade" class="logo">
 
     <div class="content">
         <form action="homeadm.php" method="POST">
-            <div class="tabs">
-                <div class="tab" id="tab-usuario" onclick="location.href='cadastro.php'">Usuário</div>
-                <div class="tab active" id="tab-admin">Administrador</div>
-            </div>
 
             <div class="form-group">
                 <input type="text" name="nome" placeholder="Nome" required>
                 <input type="text" name="sobrenome" placeholder="Sobrenome" required>
                 <input type="email" name="email" placeholder="Email" required>
-                <input type="text" name="senha" placeholder="senha" required>
-                <select class="form-select form-select-lg mb-3" aria-label="Large select example">
-                    <option selected>Selecione o cargo</option>
+                <input type="password" name="senha" placeholder="Senha" required>
+                <select class="form-select form-select-lg mb-3 select-cargo" name="cargo" required>
+                    <option value="" disabled selected>Selecione o cargo</option>
                     <option value="admin">Administrador</option>
-                    <option value="usuario">Usuario</option>
+                    <option value="usuario">Usuário</option>
                 </select>
 
             </div>
+
             <div class="form-actions">
                 <button type="submit">Cadastrar</button>
             </div>
+
+            <div class="logout-button">
+                <a href="index.php"><img src="images/sair-removebg-preview.png" alt="Logout"></a>
+            </div>
         </form>
     </div>
+
 </body>
 
 </html>
