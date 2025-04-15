@@ -21,7 +21,7 @@
     </div>
 
     <div class="logout-button">
-        <a href="index.php"><img src="images/sair-removebg-preview.png" alt="Logout"></a>
+        <a href="index.php"><img src="images/icon_desconect2.png" alt="Logout"></a>
     </div>
 
     <script src="js/script.js"></script>

@@ -48,12 +48,7 @@
     </div>
 
     <div class="top-buttons">
-        <a href="index.php" class="btn-sair" title="Sair">
-            <img src="images/sair-removebg-preview.png" alt="Logout">
-        </a>
-        <a href="configuracoesadm.php" class="btn-config" title="Configuracoes">
-            <img src="images/user5-removebg-preview.png" alt="Config">
-        </a>
+        <a href="configuracoesadm.php"><img src="images/icon_voltar.png" alt="Logout"></a>
     </div>
 
     <script src="js/script.js"></script>
