@@ -2,16 +2,20 @@
 session_start();
 include 'conexao.php';
 
+$erro = "";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuario = $_POST['email'];
     $senha = $_POST['senha'];
 
     if ($conn) {
-        $dados = $conn->prepare("SELECT * FROM usuarios WHERE email = ? AND senha = ?");
-        $dados->execute([$usuario, $senha]);
+        // Buscar usuário pelo e-mail
+        $dados = $conn->prepare("SELECT * FROM usuarios WHERE email = ?");
+        $dados->execute([$usuario]);
         $user = $dados->fetch(PDO::FETCH_ASSOC);
 
-        if ($user) {
+        // Verifica se o usuário existe e a senha está correta
+        if ($user && password_verify($senha, $user['senha'])) {
             $_SESSION['usuario_id'] = $user['id'];
             $_SESSION['tipo_acesso'] = $user['tipo_acesso'];
 
@@ -23,10 +27,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 exit();
             }
         } else {
-            echo "Usuário ou senha inválidos.";
+            $erro = "Usuário ou senha inválidos.";
         }
     } else {
-        echo "Erro de conexão com o banco de dados.";
+        $erro = "Erro de conexão com o banco de dados.";
     }
 }
 ?>
@@ -44,14 +48,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="login-card">
             <img src="images/logo.png" alt="Logo" class="logo">
             <form method="POST" action="">
-            <input type="email" name="email" placeholder="Usuário" required>
-            <input type="password" name="senha" placeholder="Senha" required>
-
+                <input type="email" name="email" placeholder="Usuário" required>
+                <input type="password" name="senha" placeholder="Senha" required>
                 <button type="submit">Entrar</button>
-            
-                <?php if (isset($erro)) { echo "<p style='color:red;'>$erro</p>"; } ?>
+                <?php if (!empty($erro)) { echo "<p style='color:red;'>$erro</p>"; } ?>
             </form>
         </div>
     </div>
 </body>
 </html>
+
