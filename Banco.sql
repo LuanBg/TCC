@@ -14,5 +14,9 @@ CREATE TABLE gerenciamento_usuarios (
     tipo ENUM('admin', 'user') NOT NULL
 );
 
-
 insert into usuarios (email, senha,tipo_acesso) values ('admim@exemplo.com','1234' ,'admin');
+
+select*from  usuarios;
+select*from gerenciamento_usuarios;
+INSERT INTO gerenciamento_usuarios (nome_usuario, tipo)
+VALUES ('Administrador', 'admin');
