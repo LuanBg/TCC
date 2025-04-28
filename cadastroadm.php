@@ -1,53 +1,62 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $conn = new mysqli("localhost", "root", "cimatec", "SistemaNotas");
+include('conexao.php');
 
-    if ($conn->connect_error) {
-        die("Falha na conexão: " . $conn->connect_error);
-    }
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Recebe e trata os dados do formulário
+    $nome      = trim($_POST["nome"]);
+    $sobrenome = trim($_POST["sobrenome"]);
+    $email     = trim($_POST["email"]);
+    $senha     = trim($_POST["senha"]);
+    $cargo     = trim($_POST["cargo"]);
 
-    $nome = trim($_POST['nome'] ?? '');
-    $sobrenome = trim($_POST['sobrenome'] ?? '');
-    $email = trim($_POST['email'] ?? '');
-    $senha = $_POST['senha'] ?? '';
-    $cargo = $_POST['cargo'] ?? '';
+    // Concatena nome e sobrenome para a tabela de gerenciamento
+    $nomeCompleto = $nome . " " . $sobrenome;
+
+    // Criptografa a senha para armazenamento seguro
     $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
-    $nomeCompleto = $nome . ' ' . $sobrenome;
 
-    // 🔍 Verificar se o e-mail já existe
-    $stmtVerifica = $conn->prepare("SELECT id FROM usuarios WHERE email = ?");
-    $stmtVerifica->bind_param("s", $email);
-    $stmtVerifica->execute();
-    $stmtVerifica->store_result();
+    try {
+        // Verifica se o e-mail já está cadastrado na tabela 'usuarios'
+        $stmtCheck = $conn->prepare("SELECT COUNT(*) FROM usuarios WHERE email = :email");
+        $stmtCheck->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmtCheck->execute();
 
-    if ($stmtVerifica->num_rows > 0) {
-        echo "<script>alert('Este e-mail já está cadastrado.'); window.history.back();</script>";
-        $stmtVerifica->close();
-        $conn->close();
-        exit();
+        if ($stmtCheck->fetchColumn() > 0) {
+            echo "Este e-mail já está cadastrado. Por favor, use outro.";
+            exit;
+        }
+
+        // Inicia uma transação para garantir que as duas inserções ocorram
+        $conn->beginTransaction();
+
+        // Inserção na tabela 'usuarios'
+        $sqlUsuarios = "INSERT INTO usuarios (email, senha, tipo_acesso) VALUES (:email, :senha, :cargo)";
+        $stmt1 = $conn->prepare($sqlUsuarios);
+        $stmt1->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt1->bindValue(':senha', $senhaHash, PDO::PARAM_STR);
+        $stmt1->bindValue(':cargo', $cargo, PDO::PARAM_STR);
+        $stmt1->execute();
+
+        // Inserção na tabela 'gerenciamento_usuarios'
+        $sqlGerenciamento = "INSERT INTO gerenciamento_usuarios (nome_usuario, tipo) VALUES (:nome, :cargo)";
+        $stmt2 = $conn->prepare($sqlGerenciamento);
+        $stmt2->bindValue(':nome', $nomeCompleto, PDO::PARAM_STR);
+        $stmt2->bindValue(':cargo', $cargo, PDO::PARAM_STR);
+        $stmt2->execute();
+
+        // Confirma as operações
+        $conn->commit();
+
+        echo "Cadastro realizado com sucesso!";
+    } catch (PDOException $e) {
+        // Se ocorrer algum erro, reverte a transação
+        $conn->rollBack();
+        echo "Erro ao realizar o cadastro: " . $e->getMessage();
     }
-
-    $stmtVerifica->close();
-
-    // Inserir nas tabelas
-    $stmtUsuarios = $conn->prepare("INSERT INTO usuarios (email, senha, tipo_acesso) VALUES (?, ?, ?)");
-    $stmtUsuarios->bind_param("sss", $email, $senhaHash, $cargo);
-
-    $stmtGerenciamento = $conn->prepare("INSERT INTO gerenciamento_usuarios (nome_usuario, tipo) VALUES (?, ?)");
-    $stmtGerenciamento->bind_param("ss", $nomeCompleto, $cargo);
-
-    if ($stmtUsuarios->execute() && $stmtGerenciamento->execute()) {
-        header("Location: homeadm.php");
-        exit();
-    } else {
-        echo "Erro ao cadastrar: " . $conn->error;
-    }
-
-    $stmtUsuarios->close();
-    $stmtGerenciamento->close();
-    $conn->close();
 }
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -73,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <select class="form-select form-select-lg mb-3 select-cargo" name="cargo" required>
                     <option value="" disabled selected>Selecione o cargo</option>
                     <option value="admin">Administrador</option>
-                    <option value="user">Usuário</option> <!-- Corrigido aqui -->
+                    <option value="user">Usuário</option>
                 </select>
             </div>
 
