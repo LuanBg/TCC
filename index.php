@@ -9,12 +9,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $senha = $_POST['senha'];
 
     if ($conn) {
-        // Buscar usuário pelo e-mail
         $dados = $conn->prepare("SELECT * FROM usuarios WHERE email = ?");
         $dados->execute([$usuario]);
         $user = $dados->fetch(PDO::FETCH_ASSOC);
 
-        // Verifica se o usuário existe e a senha está correta
         if ($user && password_verify($senha, $user['senha'])) {
             $_SESSION['usuario_id'] = $user['id'];
             $_SESSION['tipo_acesso'] = $user['tipo_acesso'];

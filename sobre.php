@@ -22,7 +22,8 @@
                     <img src="images/logo.png" alt="Imagem do Projeto" style="width:60%; height:auto; border-radius: 8px;">
                 </div>
                 <div class="projeto-texto">
-                    <p>Este é o texto que descreve o projeto. Aqui você pode colocar uma explicação breve ou um resumo do seu trabalho.</p>
+                    <p>A implementação do sistema Flownotas surge como uma solução estratégica para aprimorar a eficiência operacional, automatizando processos manuais e reduzindo erros usando os sites do fsist e do sieg para baixar as chaves. 
+                    Com isso, a equipe pode se concentrar em atividades de maior valor agregado , reduzindo em até 80% O TEMPO de entrega.</p>
                 </div>
             </div>
             <h2 style="text-align:center; margin-bottom:20px;">Integrantes</h2>

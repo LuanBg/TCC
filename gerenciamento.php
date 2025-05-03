@@ -12,12 +12,10 @@ include('conexao.php');
 </head>
 <body>
   <div class="container mt-4">
-    <!-- Área do logo da Bomfim -->
     <div class="text-center mb-4">
         <img src="images/logo.png" alt="Bomfim Contabilidade" class="img-fluid" style="max-width: 200px;">
     </div>
 
-    <!-- Barra de pesquisa -->
     <div class="mb-4">
         <input type="text" id="pesquisa" class="form-control" placeholder="Pesquisar Usuário">
     </div>
@@ -26,7 +24,6 @@ include('conexao.php');
     
     <?php
     try {
-        // Realiza um JOIN entre as tabelas utilizando o mesmo id (recomendado para relacionamento)
         $sql = "SELECT u.id AS usuario_id, u.email, u.tipo_acesso, g.nome_usuario 
                 FROM usuarios u
                 JOIN gerenciamento_usuarios g ON u.id = g.id";
@@ -67,7 +64,6 @@ include('conexao.php');
     }
     ?>
     
-    <!-- Botões de controle -->
     <div class="mt-3">
       <button onclick="location.reload();" class="btn btn-success">Atualizar Lista</button>
       <a href="homeadm.php" class="btn btn-secondary">Voltar</a>

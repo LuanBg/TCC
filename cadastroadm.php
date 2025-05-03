@@ -2,21 +2,21 @@
 include('conexao.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Recebe e trata os dados do formulário
+    
     $nome      = trim($_POST["nome"]);
     $sobrenome = trim($_POST["sobrenome"]);
     $email     = trim($_POST["email"]);
     $senha     = trim($_POST["senha"]);
     $cargo     = trim($_POST["cargo"]);
 
-    // Concatena nome e sobrenome para a tabela de gerenciamento
+    
     $nomeCompleto = $nome . " " . $sobrenome;
 
-    // Criptografa a senha para armazenamento seguro
+   
     $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 
     try {
-        // Verifica se o e-mail já está cadastrado na tabela 'usuarios'
+        
         $stmtCheck = $conn->prepare("SELECT COUNT(*) FROM usuarios WHERE email = :email");
         $stmtCheck->bindValue(':email', $email, PDO::PARAM_STR);
         $stmtCheck->execute();
@@ -26,10 +26,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit;
         }
 
-        // Inicia uma transação para garantir que as duas inserções ocorram
+       
         $conn->beginTransaction();
 
-        // Inserção na tabela 'usuarios'
+        
         $sqlUsuarios = "INSERT INTO usuarios (email, senha, tipo_acesso) VALUES (:email, :senha, :cargo)";
         $stmt1 = $conn->prepare($sqlUsuarios);
         $stmt1->bindValue(':email', $email, PDO::PARAM_STR);
@@ -37,19 +37,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt1->bindValue(':cargo', $cargo, PDO::PARAM_STR);
         $stmt1->execute();
 
-        // Inserção na tabela 'gerenciamento_usuarios'
+        
         $sqlGerenciamento = "INSERT INTO gerenciamento_usuarios (nome_usuario, tipo) VALUES (:nome, :cargo)";
         $stmt2 = $conn->prepare($sqlGerenciamento);
         $stmt2->bindValue(':nome', $nomeCompleto, PDO::PARAM_STR);
         $stmt2->bindValue(':cargo', $cargo, PDO::PARAM_STR);
         $stmt2->execute();
 
-        // Confirma as operações
+       
         $conn->commit();
 
         echo "Cadastro realizado com sucesso!";
     } catch (PDOException $e) {
-        // Se ocorrer algum erro, reverte a transação
+        
         $conn->rollBack();
         echo "Erro ao realizar o cadastro: " . $e->getMessage();
     }

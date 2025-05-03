@@ -1,7 +1,6 @@
 <?php
 include('conexao.php');
 
-// Se o formulário foi enviado via POST, processa a atualização
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id        = $_POST['id'];
     $nome      = trim($_POST['nome']);
@@ -10,10 +9,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $novaSenha = trim($_POST['senha']);
 
     try {
-        // Inicia a transação para atualizar ambas as tabelas
         $conn->beginTransaction();
 
-        // Atualiza a tabela usuarios – se a senha for informada, atualiza também
         if ($novaSenha != '') {
             $senhaHash = password_hash($novaSenha, PASSWORD_DEFAULT);
             $sqlUpdateUser = "UPDATE usuarios SET email = :email, senha = :senha, tipo_acesso = :tipo WHERE id = :id";
@@ -32,7 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->execute();
         }
 
-        // Atualiza a tabela gerenciamento_usuarios
         $sqlUpdateGer = "UPDATE gerenciamento_usuarios SET nome_usuario = :nome, tipo = :tipo WHERE id = :id";
         $stmtGer = $conn->prepare($sqlUpdateGer);
         $stmtGer->bindValue(':nome', $nome, PDO::PARAM_STR);
@@ -50,7 +46,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// Se o método for GET, recupera os dados do usuário
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $sql = "SELECT u.id AS usuario_id, u.email, u.senha, u.tipo_acesso, g.nome_usuario 
