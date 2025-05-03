@@ -29,22 +29,21 @@ Com isso, a equipe pode se concentrar em atividades de maior valor agregado , re
             <h2 style="text-align:center; margin-bottom:20px;">Integrantes</h2>
             <div class="integrantes">
                 <div class="integrante-img">
-                    <img src="images/use3-removebg-preview.png" alt="Integrante 4" style="width:150%; height:120%; border-radius: 8px;">
+                    <img src="images/icon_perfil.png" alt="Integrante 4" style="width:150%; height:120%; border-radius: 8px;">
                     <p>Luan Borges</p>
                 </div>
                 <div class="integrante-img">
-                    <img src="images/use3-removebg-preview.png" alt="Integrante 4" style="width:150%; height:120%; border-radius: 8px;">
+                    <img src="images/icon_perfil.png" alt="Integrante 4" style="width:150%; height:120%; border-radius: 8px;">
                     <p>Breno</p>
                 </div>
                 <div class="integrante-img">
-                    <img src="images/use3-removebg-preview.png" alt="Integrante 4" style="width:150%; height:120%; border-radius: 8px;">
+                    <img src="images/icon_perfil.png" alt="Integrante 4" style="width:150%; height:120%; border-radius: 8px;">
                     <p>Alice</p>
                 </div>
                 <div class="integrante-img">
-                    <img src="images/use3-removebg-preview.png" alt="Integrante 4" style="width:150%; height:120%; border-radius: 8px;">
+                    <img src="images/icon_perfil.png" alt="Integrante 4" style="width:150%; height:120%; border-radius: 8px;">
                     <p>Samir</p>
                 </div>
-            </div>
         </div>
     </div>
 
