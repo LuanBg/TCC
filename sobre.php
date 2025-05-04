@@ -22,26 +22,27 @@
                     <img src="images/logo.png" alt="Imagem do Projeto" style="width:60%; height:auto; border-radius: 8px;">
                 </div>
                 <div class="projeto-texto">
-                    <p>Este é o texto que descreve o projeto. Aqui você pode colocar uma explicação breve ou um resumo do seu trabalho.</p>
+                    <p>A implementação do sistema Flownotas surge como uma solução estratégica para aprimorar a eficiência operacional, automatizando processos manuais e reduzindo erros usando os sites do fsist e do sieg para baixar as chaves. 
+                    Com isso, a equipe pode se concentrar em atividades de maior valor agregado , reduzindo em até 80% O TEMPO de entrega.</p>
                 </div>
             </div>
             <h2 style="text-align:center; margin-bottom:20px;">Integrantes</h2>
             <div class="integrantes">
                 <div class="integrante-img">
-                    <img src="images/icon_perfil.png" alt="Integrante 4" style="width:150%; height:120%; border-radius: 8px;">
+                    <img src="images/WhatsApp Image 2025-05-04 at 20.05.44.jpeg" alt="Integrante 4" style="width:150%; height:120%; border-radius: 8px;">
                     <p>Luan Borges</p>
                 </div>
                 <div class="integrante-img">
-                    <img src="images/icon_perfil.png" alt="Integrante 4" style="width:150%; height:120%; border-radius: 8px;">
-                    <p>Breno</p>
+                    <img src="images/WhatsApp Image 2025-05-04 at 13.33.08.jpeg" alt="Integrante 4" style="width:150%; height:120%; border-radius: 8px;">
+                    <p>Breno Araújo</p>
                 </div>
                 <div class="integrante-img">
-                    <img src="images/icon_perfil.png" alt="Integrante 4" style="width:150%; height:120%; border-radius: 8px;">
-                    <p>Alice</p>
+                    <img src="images/WhatsApp Image 2025-05-04 at 20.07.46.jpeg" alt="Integrante 4" style="width:150%; height:120%; border-radius: 8px;">
+                    <p>Alice Barbosa</p>
                 </div>
                 <div class="integrante-img">
-                    <img src="images/icon_perfil.png" alt="Integrante 4" style="width:150%; height:120%; border-radius: 8px;">
-                    <p>Samir</p>
+                    <img src="images/WhatsApp Image 2025-05-04 at 20.06.24.jpeg" alt="Integrante 4" style="width:150%; height:120%; border-radius: 8px;">
+                    <p>Samir Silva</p>
                 </div>
             </div>
         </div>

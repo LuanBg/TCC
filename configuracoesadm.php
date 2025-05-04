@@ -18,7 +18,7 @@
 
         <div class="form-group">
             <h2>Configurações</h2>
-            <button onclick="window.location.href=''">Gerenciamento</button>
+            <button onclick="window.location.href='gerenciamento.php'">Gerenciamento</button>
             <button onclick="window.location.href='sobreadm.php'">Sobre</button>
         </div>
 

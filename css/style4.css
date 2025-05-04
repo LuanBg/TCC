@@ -24,16 +24,16 @@ body {
     height: 50px;
     max-width: 500px;
     padding: 12px 15px;
-    border: 1px solid #B2DF76;
+    border: 1px solid #bcd525;
     border-radius: 10px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #B2DF76;
+    background-color: #bcd525;
     transition: backgr*ound 0.3s ease;
 }
 
 .form-group button:hover {
-    background-color: #43a047;
+    background-color: #bcd525;
 }
 
 .logo {
