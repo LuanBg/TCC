@@ -3,7 +3,7 @@ $host = 'localhost';
 $port = '3306'; 
 $db   = 'SistemaNotas';
 $user = 'root';
-$pass = 'cimatec'; 
+$pass = 'Bomfim1212$'; 
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";

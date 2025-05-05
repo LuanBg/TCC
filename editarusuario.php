@@ -1,6 +1,7 @@
-<?php
+<?php 
 include('conexao.php');
 
+// Atualização do usuário
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id        = $_POST['id'];
     $nome      = trim($_POST['nome']);
@@ -13,28 +14,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($novaSenha != '') {
             $senhaHash = password_hash($novaSenha, PASSWORD_DEFAULT);
-            $sqlUpdateUser = "UPDATE usuarios SET email = :email, senha = :senha, tipo_acesso = :tipo WHERE id = :id";
-            $stmt = $conn->prepare($sqlUpdateUser);
-            $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+            $sqlUpdate = "UPDATE usuarios SET usuario = :nome, email = :email, senha = :senha, tipo_acesso = :tipo WHERE id = :id";
+            $stmt = $conn->prepare($sqlUpdate);
             $stmt->bindValue(':senha', $senhaHash, PDO::PARAM_STR);
-            $stmt->bindValue(':tipo', $tipo, PDO::PARAM_STR);
-            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-            $stmt->execute();
         } else {
-            $sqlUpdateUser = "UPDATE usuarios SET email = :email, tipo_acesso = :tipo WHERE id = :id";
-            $stmt = $conn->prepare($sqlUpdateUser);
-            $stmt->bindValue(':email', $email, PDO::PARAM_STR);
-            $stmt->bindValue(':tipo', $tipo, PDO::PARAM_STR);
-            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-            $stmt->execute();
+            $sqlUpdate = "UPDATE usuarios SET usuario = :nome, email = :email, tipo_acesso = :tipo WHERE id = :id";
+            $stmt = $conn->prepare($sqlUpdate);
         }
 
-        $sqlUpdateGer = "UPDATE gerenciamento_usuarios SET nome_usuario = :nome, tipo = :tipo WHERE id = :id";
-        $stmtGer = $conn->prepare($sqlUpdateGer);
-        $stmtGer->bindValue(':nome', $nome, PDO::PARAM_STR);
-        $stmtGer->bindValue(':tipo', $tipo, PDO::PARAM_STR);
-        $stmtGer->bindValue(':id', $id, PDO::PARAM_INT);
-        $stmtGer->execute();
+        $stmt->bindValue(':nome', $nome, PDO::PARAM_STR);
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->bindValue(':tipo', $tipo, PDO::PARAM_STR);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
 
         $conn->commit();
         header("Location: gerenciamento.php");
@@ -46,12 +38,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+// Consulta do usuário para exibir no formulário
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $sql = "SELECT u.id AS usuario_id, u.email, u.senha, u.tipo_acesso, g.nome_usuario 
-            FROM usuarios u
-            JOIN gerenciamento_usuarios g ON u.id = g.id
-            WHERE u.id = :id";
+    $sql = "SELECT id, usuario, email, tipo_acesso FROM usuarios WHERE id = :id";
     $stmt = $conn->prepare($sql);
     $stmt->bindValue(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
@@ -66,6 +56,7 @@ if (isset($_GET['id'])) {
     exit;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -79,15 +70,18 @@ if (isset($_GET['id'])) {
 <div class="container mt-4">
   <h2>Editar Usuário</h2>
   <form action="editarusuario.php" method="POST">
-    <input type="hidden" name="id" value="<?php echo $usuario['usuario_id']; ?>">
+    <input type="hidden" name="id" value="<?php echo $usuario['id']; ?>">
+    
     <div class="mb-3">
-      <label class="form-label">Nome</label>
-      <input type="text" name="nome" class="form-control" value="<?php echo htmlspecialchars($usuario['nome_usuario']); ?>" required>
+      <label class="form-label">Nome Completo</label>
+      <input type="text" name="nome" class="form-control" value="<?php echo htmlspecialchars($usuario['usuario']); ?>" required>
     </div>
+
     <div class="mb-3">
       <label class="form-label">Email</label>
       <input type="email" name="email" class="form-control" value="<?php echo htmlspecialchars($usuario['email']); ?>" required>
     </div>
+
     <div class="mb-3">
       <label class="form-label">Tipo de Acesso</label>
       <select name="tipo" class="form-control" required>
@@ -95,13 +89,27 @@ if (isset($_GET['id'])) {
         <option value="user" <?php if($usuario['tipo_acesso'] == 'user') echo 'selected'; ?>>Usuário</option>
       </select>
     </div>
+
     <div class="mb-3">
       <label class="form-label">Nova Senha (deixe em branco para manter a atual)</label>
-      <input type="password" name="senha" class="form-control" placeholder="Digite a nova senha">
+      <div class="input-group">
+        <input type="password" name="senha" id="senha" class="form-control" placeholder="Digite a nova senha">
+        <button type="button" class="btn btn-outline-secondary" onclick="toggleSenha()">👁️</button>
+      </div>
     </div>
+
     <button type="submit" class="btn btn-primary">Atualizar</button>
     <a href="gerenciamento.php" class="btn btn-secondary">Cancelar</a>
   </form>
 </div>
+
+<script>
+  function toggleSenha() {
+    const senhaInput = document.getElementById('senha');
+    const tipo = senhaInput.getAttribute('type');
+    senhaInput.setAttribute('type', tipo === 'password' ? 'text' : 'password');
+  }
+</script>
+
 </body>
 </html>

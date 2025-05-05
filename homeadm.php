@@ -15,7 +15,10 @@
             <img src="images/logo.png" alt="Logo">
         </div>
 
-        <button type="button" name="nome">Dowloard de notas</button>
+        <form action="executar_script.php" method="post">
+    <button type="submit" style="padding: 10px 180px;">Download de Notas</button>
+</form>
+
         <button onclick="window.location.href='cadastroadm.php'">Cadastro</button>
         <button onclick="window.location.href='configuracoesadm.php'">Configurações</button>
     </div>

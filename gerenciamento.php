@@ -13,20 +13,19 @@ include('conexao.php');
 <body>
   <div class="container mt-4">
     <div class="text-center mb-4">
-        <img src="images/logo.png" alt="Bomfim Contabilidade" class="img-fluid" style="max-width: 200px;">
+      <img src="images/logo.png" alt="Bomfim Contabilidade" class="img-fluid" style="max-width: 200px;">
     </div>
 
     <div class="mb-4">
-        <input type="text" id="pesquisa" class="form-control" placeholder="Pesquisar Usuário">
+      <input type="text" id="pesquisa" class="form-control" placeholder="Pesquisar Usuário">
     </div>
 
     <h2>Gerenciamento de Usuários</h2>
-    
+
     <?php
     try {
-        $sql = "SELECT u.id AS usuario_id, u.email, u.tipo_acesso, g.nome_usuario 
-                FROM usuarios u
-                JOIN gerenciamento_usuarios g ON u.id = g.id";
+        // CONSULTA SIMPLIFICADA
+        $sql = "SELECT id AS usuario_id, usuario AS nome_usuario, email, tipo_acesso FROM usuarios";
         $stmt = $conn->query($sql);
         $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -41,13 +40,13 @@ include('conexao.php');
                       <th>Ações</th>
                     </tr>
                   </thead>';
-            echo '<tbody>';
+            echo '<tbody id="tabelaUsuarios">';
             foreach ($usuarios as $usuario) {
-                echo '<tr>';
+                echo '<tr data-nome="' . strtolower($usuario['nome_usuario']) . '">';
                 echo '<td>' . $usuario['usuario_id'] . '</td>';
-                echo '<td>' . $usuario['nome_usuario'] . '</td>';
-                echo '<td>' . $usuario['email'] . '</td>';
-                echo '<td>' . $usuario['tipo_acesso'] . '</td>';
+                echo '<td>' . htmlspecialchars($usuario['nome_usuario']) . '</td>';
+                echo '<td>' . htmlspecialchars($usuario['email']) . '</td>';
+                echo '<td>' . htmlspecialchars($usuario['tipo_acesso']) . '</td>';
                 echo '<td>
                         <a href="editarusuario.php?id=' . $usuario['usuario_id'] . '" class="btn btn-primary btn-sm">Editar</a>
                         <a href="excluirusuario.php?id=' . $usuario['usuario_id'] . '" class="btn btn-danger btn-sm" onclick="return confirm(\'Tem certeza que deseja excluir este usuário?\');">Excluir</a>
@@ -63,13 +62,28 @@ include('conexao.php');
         echo '<div class="alert alert-danger">Erro: ' . $e->getMessage() . '</div>';
     }
     ?>
-    
+
     <div class="mt-3">
       <button onclick="location.reload();" class="btn btn-success">Atualizar Lista</button>
       <a href="homeadm.php" class="btn btn-secondary">Voltar</a>
     </div>
   </div>
-  
-  <script src="js/script.js"></script>
+
+  <!-- SCRIPT DE PESQUISA -->
+  <script>
+    document.getElementById('pesquisa').addEventListener('input', function () {
+      const termo = this.value.toLowerCase();
+      const linhas = document.querySelectorAll('#tabelaUsuarios tr');
+
+      linhas.forEach(function (linha) {
+        const nome = linha.getAttribute('data-nome');
+        if (nome.includes(termo)) {
+          linha.style.display = '';
+        } else {
+          linha.style.display = 'none';
+        }
+      });
+    });
+  </script>
 </body>
 </html>

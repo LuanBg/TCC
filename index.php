@@ -4,16 +4,30 @@ include 'conexao.php';
 
 $erro = "";
 
+// Exemplo opcional de criação de um usuário padrão, remova depois de usar uma vez
+$usuario_padrao = 'admin2';
+$email_padrao = 'admin@teste.com';
+$senha_padrao = password_hash('123456', PASSWORD_DEFAULT);
+$tipo_padrao = 'admin';
+
+// Inserir o admin padrão se ele ainda não existir
+$verifica = $conn->prepare("SELECT COUNT(*) FROM usuarios WHERE usuario = ?");
+$verifica->execute([$usuario_padrao]);
+if ($verifica->fetchColumn() == 0) {
+    $stmt = $conn->prepare("INSERT INTO usuarios (usuario, senha, email, tipo_acesso) VALUES (?, ?, ?, ?)");
+    $stmt->execute([$usuario_padrao, $senha_padrao, $email_padrao, $tipo_padrao]);
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $usuario = $_POST['email'];
-    $senha = $_POST['senha'];
+    $usuario_input = $_POST['usuario'] ?? '';
+    $senha_input = $_POST['senha'] ?? '';
 
     if ($conn) {
-        $dados = $conn->prepare("SELECT * FROM usuarios WHERE email = ?");
-        $dados->execute([$usuario]);
-        $user = $dados->fetch(PDO::FETCH_ASSOC);
+        $stmt = $conn->prepare("SELECT * FROM usuarios WHERE usuario = ?");
+        $stmt->execute([$usuario_input]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($user && password_verify($senha, $user['senha'])) {
+        if ($user && password_verify($senha_input, $user['senha'])) {
             $_SESSION['usuario_id'] = $user['id'];
             $_SESSION['tipo_acesso'] = $user['tipo_acesso'];
 
@@ -46,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="login-card">
             <img src="images/logo.png" alt="Logo" class="logo">
             <form method="POST" action="">
-                <input type="email" name="email" placeholder="Usuário" required>
+                <input type="text" name="usuario" placeholder="Usuário" required>
                 <input type="password" name="senha" placeholder="Senha" required>
                 <button type="submit">Entrar</button>
                 <?php if (!empty($erro)) { echo "<p style='color:red;'>$erro</p>"; } ?>
@@ -55,4 +69,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </body>
 </html>
-

@@ -29,20 +29,20 @@
             <h2 style="text-align:center; margin-bottom:20px;">Integrantes</h2>
             <div class="integrantes">
                 <div class="integrante-img">
-                    <img src="images/icon_perfil.png" alt="Integrante 4" style="width:150%; height:120%; border-radius: 8px;">
+                    <img src="images/WhatsApp Image 2025-05-04 at 20.05.44.jpeg" alt="Integrante 4" style="width:150%; height:120%; border-radius: 8px;">
                     <p>Luan Borges</p>
                 </div>
                 <div class="integrante-img">
-                    <img src="images/icon_perfil.png" alt="Integrante 4" style="width:150%; height:120%; border-radius: 8px;">
-                    <p>Breno</p>
+                    <img src="images/WhatsApp Image 2025-05-04 at 13.33.08.jpeg" alt="Integrante 4" style="width:150%; height:120%; border-radius: 8px;">
+                    <p>Breno Araújo</p>
                 </div>
                 <div class="integrante-img">
-                    <img src="images/icon_perfil.png" alt="Integrante 4" style="width:150%; height:120%; border-radius: 8px;">
-                    <p>Alice</p>
+                    <img src="images/WhatsApp Image 2025-05-04 at 20.07.46.jpeg" alt="Integrante 4" style="width:150%; height:120%; border-radius: 8px;">
+                    <p>Alice Barbosa</p>
                 </div>
                 <div class="integrante-img">
-                    <img src="images/icon_perfil.png" alt="Integrante 4" style="width:150%; height:120%; border-radius: 8px;">
-                    <p>Samir</p>
+                    <img src="images/WhatsApp Image 2025-05-04 at 20.06.24.jpeg" alt="Integrante 4" style="width:150%; height:120%; border-radius: 8px;">
+                    <p>Samir Silva</p>
                 </div>
             </div>
         </div>
