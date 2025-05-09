@@ -1,5 +1,21 @@
 <?php 
-include('conexao.php');
+// Conexão ao banco de dados
+$host = 'localhost';
+$port = '3306'; 
+$db   = 'SistemaNotas';
+$user = 'root';
+$pass = 'Bomfim1212$'; 
+$charset = 'utf8mb4';
+
+$dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";
+
+try {
+    $pdo = new PDO($dsn, $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (\PDOException $e) {
+    echo "Conexão falhou: " . $e->getMessage();
+    $pdo = null;
+}
 
 // Atualização do usuário
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -10,16 +26,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $novaSenha = trim($_POST['senha']);
 
     try {
-        $conn->beginTransaction();
+        $pdo->beginTransaction();
 
         if ($novaSenha != '') {
             $senhaHash = password_hash($novaSenha, PASSWORD_DEFAULT);
             $sqlUpdate = "UPDATE usuarios SET usuario = :nome, email = :email, senha = :senha, tipo_acesso = :tipo WHERE id = :id";
-            $stmt = $conn->prepare($sqlUpdate);
+            $stmt = $pdo->prepare($sqlUpdate);
             $stmt->bindValue(':senha', $senhaHash, PDO::PARAM_STR);
         } else {
             $sqlUpdate = "UPDATE usuarios SET usuario = :nome, email = :email, tipo_acesso = :tipo WHERE id = :id";
-            $stmt = $conn->prepare($sqlUpdate);
+            $stmt = $pdo->prepare($sqlUpdate);
         }
 
         $stmt->bindValue(':nome', $nome, PDO::PARAM_STR);
@@ -28,11 +44,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
 
-        $conn->commit();
+        $pdo->commit();
         header("Location: gerenciamento.php");
         exit;
     } catch(PDOException $e) {
-        $conn->rollBack();
+        $pdo->rollBack();
         echo "Erro ao atualizar usuário: " . $e->getMessage();
         exit;
     }
@@ -42,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $sql = "SELECT id, usuario, email, tipo_acesso FROM usuarios WHERE id = :id";
-    $stmt = $conn->prepare($sql);
+    $stmt = $pdo->prepare($sql);
     $stmt->bindValue(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);

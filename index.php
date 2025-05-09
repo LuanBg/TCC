@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'conexao.php';
+include 'conexao.php'; // Este arquivo define a variável $pdo
 
 $erro = "";
 
@@ -11,10 +11,10 @@ $senha_padrao = password_hash('123456', PASSWORD_DEFAULT);
 $tipo_padrao = 'admin';
 
 // Inserir o admin padrão se ele ainda não existir
-$verifica = $conn->prepare("SELECT COUNT(*) FROM usuarios WHERE usuario = ?");
+$verifica = $pdo->prepare("SELECT COUNT(*) FROM usuarios WHERE usuario = ?");
 $verifica->execute([$usuario_padrao]);
 if ($verifica->fetchColumn() == 0) {
-    $stmt = $conn->prepare("INSERT INTO usuarios (usuario, senha, email, tipo_acesso) VALUES (?, ?, ?, ?)");
+    $stmt = $pdo->prepare("INSERT INTO usuarios (usuario, senha, email, tipo_acesso) VALUES (?, ?, ?, ?)");
     $stmt->execute([$usuario_padrao, $senha_padrao, $email_padrao, $tipo_padrao]);
 }
 
@@ -22,8 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuario_input = $_POST['usuario'] ?? '';
     $senha_input = $_POST['senha'] ?? '';
 
-    if ($conn) {
-        $stmt = $conn->prepare("SELECT * FROM usuarios WHERE usuario = ?");
+    if ($pdo) {
+        $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE usuario = ?");
         $stmt->execute([$usuario_input]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -46,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-BR">

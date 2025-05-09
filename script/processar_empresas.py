@@ -14,6 +14,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 from dotenv import load_dotenv
+import datetime
 
 # Carrega variáveis do .env
 load_dotenv()
@@ -98,8 +99,25 @@ def tentar_colar_cnpj(driver, cnpj):
             time.sleep(2)
     return False
 
-def processar_empresa(driver, nome_pasta, caminho_sped, cnpj):
+def salvar_log_execucao(codigo_empresa, cnpj, status, mensagem, duracao):
     try:
+        conn = conectar_banco()
+        cursor = conn.cursor()
+        cursor.execute("""
+            INSERT INTO logs_execucao (codigo_empresa, cnpj, status, mensagem, duracao_segundos)
+            VALUES (%s, %s, %s, %s, %s)
+        """, (codigo_empresa, cnpj, status, mensagem, duracao))
+        conn.commit()
+        conn.close()
+    except Exception as e:
+        print(f"[ERRO] Falha ao salvar log de execução: {e}")
+
+def processar_empresa(driver, nome_pasta, caminho_sped, cnpj):
+    inicio = time.time()
+    try:
+        caminho_empresa = os.path.dirname(caminho_sped)
+
+        # Etapa 1: Envio ao FSist
         driver.get("https://www.fsist.com.br/chaves-nfe-sped")
         clicar_lento(driver, WebDriverWait(driver, 60).until(EC.element_to_be_clickable((By.ID, "arquivolab"))))
         driver.find_element(By.ID, "arquivo").send_keys(caminho_sped)
@@ -110,6 +128,27 @@ def processar_empresa(driver, nome_pasta, caminho_sped, cnpj):
         except:
             pass
 
+        # Aguarda a geração do arquivo de resposta
+        time.sleep(5)
+
+        # Etapa 2: Pega o arquivo .txt mais recente (resposta FSist)
+        def encontrar_arquivo_mais_recente(pasta):
+            arquivos_txt = [
+                os.path.join(pasta, f)
+                for f in os.listdir(pasta)
+                if f.lower().endswith(".txt")
+            ]
+            if not arquivos_txt:
+                return None
+            arquivos_txt.sort(key=os.path.getmtime, reverse=True)
+            return arquivos_txt[0]
+
+        arquivo_mais_recente = encontrar_arquivo_mais_recente(caminho_empresa)
+        if not arquivo_mais_recente:
+            salvar_log_execucao(nome_pasta, cnpj, "erro", "Nenhum arquivo .txt encontrado para subir no Sieg", time.time() - inicio)
+            return False
+
+        # Etapa 3: Envio ao Sieg
         driver.get("https://hub.sieg.com/#")
         time.sleep(5)
         try:
@@ -125,15 +164,20 @@ def processar_empresa(driver, nome_pasta, caminho_sped, cnpj):
         esconder_popups(driver)
 
         if not tentar_colar_cnpj(driver, cnpj):
+            salvar_log_execucao(nome_pasta, cnpj, "erro", "Falha ao colar CNPJ", time.time() - inicio)
             return False
 
         input_arquivo = WebDriverWait(driver, 60).until(
             EC.presence_of_element_located((By.ID, "txtKeysByTxt"))
         )
-        input_arquivo.send_keys(caminho_sped)
+        input_arquivo.send_keys(arquivo_mais_recente)
+
         clicar_lento(driver, WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, "btnAddKeys"))))
+        salvar_log_execucao(nome_pasta, cnpj, "sucesso", "Processado com sucesso", time.time() - inicio)
         return True
+
     except Exception as e:
+        salvar_log_execucao(nome_pasta, cnpj, "erro", str(e), time.time() - inicio)
         print(f"[ERRO] Empresa {nome_pasta}: {str(e)}")
         return False
 
@@ -162,7 +206,11 @@ def iniciar_execucao():
             empresas_com_erro.append(nome_pasta)
 
     driver.quit()
-    mostrar_resultados_erro(empresas_com_erro)
+
+    if empresas_com_erro:
+        mostrar_resultados_erro(empresas_com_erro)
+    else:
+        messagebox.showinfo("Concluído", "Processo finalizado com sucesso!")
 
 def mostrar_resultados_erro(lista_empresas):
     erro_janela = tk.Tk()
@@ -208,9 +256,41 @@ def iniciar_interface():
     root = tk.Tk()
     root.title("Automatização FSist")
     tk.Label(root, text="Sistema de Cadastro e Execução", font=("Arial", 14)).pack(pady=10)
+
     tk.Button(root, text="Cadastrar Empresa", command=abrir_janela_cadastro).pack(pady=10)
-    tk.Button(root, text="Iniciar Processo", command=lambda: [root.destroy(), iniciar_execucao()]).pack(pady=10)
+
+    # ✅ Agora mantém a interface aberta
+    tk.Button(root, text="Iniciar Processo", command=iniciar_execucao).pack(pady=10)
+
+    # ✅ Novo botão para abrir Chrome e encerrar
+    tk.Button(root, text="Abrir Navegador (Finalizar)", bg="#28a745", fg="white", command=abrir_chrome_normal).pack(pady=20)
+
     root.mainloop()
+
+
+
+def abrir_chrome_normal():
+    try:
+        chrome_path = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+        os.startfile(chrome_path)  # Abre o Chrome como um programa normal
+        print("[INFO] Chrome aberto normalmente.")
+    except Exception as e:
+        print(f"[ERRO] Falha ao abrir o Chrome: {e}")
+        messagebox.showerror("Erro", "Não foi possível abrir o Google Chrome.")
+    finally:
+        exit()  # Encerra o script após abrir o navegador
+
 
 if __name__ == "__main__":
     iniciar_interface()
+
+def abrir_chrome_normal():
+    try:
+        chrome_path = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+        os.startfile(chrome_path)
+        print("[INFO] Chrome aberto normalmente.")
+    except Exception as e:
+        print(f"[ERRO] Falha ao abrir o Chrome: {e}")
+        messagebox.showerror("Erro", "Não foi possível abrir o Google Chrome.")
+    finally:
+        exit()
