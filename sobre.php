@@ -12,13 +12,13 @@
 <body class="bg-light">
 
     <div class="container py-5">
-        <!-- Logo -->
+        
         <div class="text-center mb-5">
             <img src="images/logo.png" alt="Logo" class="img-fluid" style="max-width: 180px;">
         </div>
 
         <div class="content">
-            <!-- Nosso Projeto -->
+            
             <div class="card shadow-sm mb-5">
                 <div class="card-body">
                     <h2 class="text-center mb-4 text-success">Nosso Projeto</h2>
@@ -34,7 +34,7 @@
                 </div>
             </div>
 
-            <!-- Integrantes -->
+            
             <h2 class="text-center mb-4 text-success">Integrantes</h2>
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
                 <div class="col">
@@ -72,7 +72,7 @@
             </div>
         </div>
 
-        <!-- Botão de Voltar -->
+
         <div class="text-center mt-5">
             <a href="configuracoes.php" class="btn btn-outline-success">
                 <img src="images/icon_voltar.png" alt="Voltar" style="width: 40px;">

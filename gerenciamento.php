@@ -1,5 +1,4 @@
 <?php
-// Conexão ao banco
 $host = 'localhost';
 $port = '3306'; 
 $db   = 'SistemaNotas';

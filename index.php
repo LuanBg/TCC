@@ -1,16 +1,16 @@
 <?php
 session_start();
-include 'conexao.php'; // Este arquivo define a variável $pdo
+include 'conexao.php'; 
 
 $erro = "";
 
-// Exemplo opcional de criação de um usuário padrão, remova depois de usar uma vez
+
 $usuario_padrao = 'admin2';
 $email_padrao = 'admin@teste.com';
 $senha_padrao = password_hash('123456', PASSWORD_DEFAULT);
 $tipo_padrao = 'admin';
 
-// Inserir o admin padrão se ele ainda não existir
+
 $verifica = $pdo->prepare("SELECT COUNT(*) FROM usuarios WHERE usuario = ?");
 $verifica->execute([$usuario_padrao]);
 if ($verifica->fetchColumn() == 0) {

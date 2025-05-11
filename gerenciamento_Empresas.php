@@ -1,6 +1,6 @@
 <?php
 include "conexao.php";
-// Buscar as empresas no banco
+
 $stmt = $pdo->query("SELECT * FROM empresas");
 $empresas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -19,7 +19,7 @@ $empresas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body class="bg-light">
 
     <div class="container py-5">
-        <!-- Logo -->
+        
         <div class="text-center mb-5">
             <img src="images/logo.png" alt="Logo" class="img-fluid" style="max-width: 180px;">
         </div>
@@ -28,7 +28,7 @@ $empresas = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="card-body">
                 <h2 class="text-center mb-4 text-success">Gerenciamento de Empresas</h2>
 
-                <!-- Tabela de Empresas -->
+                
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -51,14 +51,14 @@ $empresas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </tbody>
                 </table>
 
-                <!-- Adicionar Empresa -->
+                
                 <div class="text-center mt-4">
                     <a href="adicionar_empresa.php" class="btn btn-success btn-lg">Adicionar Nova Empresa</a>
                 </div>
             </div>
         </div>
 
-        <!-- Botão de Voltar -->
+        
         <div class="text-center mt-5">
             <a href="configuracoesadm.php" class="btn btn-outline-success">
                 <img src="images/icon_voltar.png" alt="Voltar" style="width: 40px;">

@@ -21,7 +21,7 @@
             margin: 0 auto;
             padding: 30px;
             border-radius: 15px;
-            background-color: #b9ec9b; /* verde claro */
+            background-color: #b9ec9b; 
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
 
@@ -51,12 +51,12 @@
 
     <div class="container py-5">
 
-        <!-- Logo -->
+        
         <div class="text-center mb-4">
             <img src="images/logo.png" alt="Logo" class="img-fluid logo">
         </div>
 
-        <!-- Card verde -->
+        
         <div class="card-verde text-center">
             <h2 class="mb-4">Configurações</h2>
 
@@ -67,7 +67,7 @@
             </div>
         </div>
 
-        <!-- Voltar -->
+        
         <div class="logout-button">
             <a href="homeadm.php">
                 <img src="images/icon_voltar.png" alt="Voltar">

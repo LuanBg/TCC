@@ -6,16 +6,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $codigo_empresa = $_POST['codigo_empresa'];
     $cnpj = $_POST['cnpj'];
 
-    // Conectar ao banco
+    
     try {
         $pdo = new PDO("mysql:host=localhost;dbname=sistemaNotas", "root", "Bomfim1212$");
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // Inserir nova empresa
+        
         $stmt = $pdo->prepare("INSERT INTO empresas (codigo_empresa, cnpj) VALUES (?, ?)");
         $stmt->execute([$codigo_empresa, $cnpj]);
 
-        header("Location: gerenciamento_empresas.php"); // Redireciona de volta para o gerenciamento
+        header("Location: gerenciamento_empresas.php"); 
         exit;
     } catch (PDOException $e) {
         echo 'Erro: ' . $e->getMessage();
