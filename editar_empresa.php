@@ -1,7 +1,7 @@
 <?php
 include "conexao.php";
 
-// Verifica se veio o código da empresa
+
 if (!isset($_GET['codigo_empresa'])) {
     echo "Código da empresa não fornecido.";
     exit;
@@ -9,25 +9,25 @@ if (!isset($_GET['codigo_empresa'])) {
 
 $codigo_empresa = $_GET['codigo_empresa'];
 
-// Buscar os dados da empresa
+
 $stmt = $pdo->prepare("SELECT * FROM empresas WHERE codigo_empresa = ?");
 $stmt->execute([$codigo_empresa]);
 $empresa = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Se não encontrou a empresa
+
 if (!$empresa) {
     echo "Empresa não encontrada.";
     exit;
 }
 
-// Se o formulário foi enviado
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $novo_cnpj = $_POST['cnpj'];
 
     $update = $pdo->prepare("UPDATE empresas SET cnpj = ? WHERE codigo_empresa = ?");
     $update->execute([$novo_cnpj, $codigo_empresa]);
 
-    // Redireciona de volta para a tela de gerenciamento
+    
     header("Location: gerenciamento_empresas.php");
     exit;
 }

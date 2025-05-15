@@ -8,7 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f8f9fa;
+            background: linear-gradient(to right, #f8f9fa, #ffffff);
+            min-height: 100vh;
         }
 
         .logo img {
@@ -18,11 +19,10 @@
 
         .card-verde {
             max-width: 500px;
-            margin: 0 auto;
+            margin: 50px auto;
             padding: 30px;
-            border-radius: 15px;
-            background-color: #b9ec9b; /* verde claro */
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
         }
 
         .btn-verde {
@@ -44,6 +44,11 @@
         .logout-button img {
             max-width: 50px;
         }
+
+        .btn-outline-primary {
+            color: #28a745;
+            border-color: #28a745;
+        }
     </style>
 </head>
 
@@ -51,26 +56,22 @@
 
     <div class="container py-5">
 
-        <!-- Logo -->
-        <div class="text-center mb-4">
-            <img src="images/logo.png" alt="Logo" class="img-fluid logo">
-        </div>
-
-        <!-- Card verde -->
         <div class="card-verde text-center">
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo">
+        </div>
             <h2 class="mb-4">Configurações</h2>
 
-            <div class="d-grid gap-3">
-                <a href="gerenciamento_empresas.php" class="btn btn-verde btn-lg">Gerenciamento de Empresas</a>
-                <a href="gerenciamento.php" class="btn btn-verde btn-lg">Gerenciamento</a>
-                <a href="sobreadm.php" class="btn btn-verde btn-lg">Sobre</a>
+            <div class="d-grid gap-2 mb-2">
+            <button onclick="window.location.href='gerenciamento_empresas.php'" class="btn btn-outline-primary">Gerenciamento das Empresas</button>
+            <button onclick="window.location.href='gerenciamento.php'" class="btn btn-outline-primary">Gerenciamento dos Usuarios</button>
+            <button onclick="window.location.href='sobreadm.php'" class="btn btn-outline-primary">Sobre</button>
             </div>
         </div>
 
-        <!-- Voltar -->
-        <div class="logout-button">
-            <a href="homeadm.php">
-                <img src="images/icon_voltar.png" alt="Voltar">
+        <div class="text-center mt-5">
+            <a href="homeadm.php" class="btn btn-outline-success">
+                <img src="images/icon_voltar.png" alt="Voltar" style="width: 40px;">
             </a>
         </div>
 

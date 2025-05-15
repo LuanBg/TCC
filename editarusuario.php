@@ -1,5 +1,5 @@
 <?php 
-// Conexão ao banco de dados
+
 $host = 'localhost';
 $port = '3306'; 
 $db   = 'SistemaNotas';
@@ -17,7 +17,7 @@ try {
     $pdo = null;
 }
 
-// Atualização do usuário
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id        = $_POST['id'];
     $nome      = trim($_POST['nome']);
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// Consulta do usuário para exibir no formulário
+
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $sql = "SELECT id, usuario, email, tipo_acesso FROM usuarios WHERE id = :id";

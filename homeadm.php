@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(to right, #e6ffe6, #ffffff);
+            background: linear-gradient(to right, #f8f9fa, #ffffff);
             min-height: 100vh;
         }
 

@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 
     try {
-        // Verificar se o e-mail já existe
+        
         $stmtCheckEmail = $conn->prepare("SELECT COUNT(*) FROM usuarios WHERE email = :email");
         $stmtCheckEmail->bindValue(':email', $email, PDO::PARAM_STR);
         $stmtCheckEmail->execute();
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             exit;
         }
 
-        // Verificar se o nome de usuário já existe
+        
         $stmtCheckUser = $conn->prepare("SELECT COUNT(*) FROM usuarios WHERE usuario = :usuario");
         $stmtCheckUser->bindValue(':usuario', $usuario, PDO::PARAM_STR);
         $stmtCheckUser->execute();
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             exit;
         }
 
-        // Inserir novo usuário
+        
         $stmt = $conn->prepare("INSERT INTO usuarios (usuario, email, senha, tipo_acesso) VALUES (:usuario, :email, :senha, :tipo)");
         $stmt->bindValue(':usuario', $usuario, PDO::PARAM_STR);
         $stmt->bindValue(':email', $email, PDO::PARAM_STR);
@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <input type="text" name="usuario" placeholder="Nome de Usuário" required>
                 <input type="email" name="email" placeholder="E-mail" required>
 
-                <!-- Campo de Senha com Mostrar/Ocultar -->
+                
                 <div class="input-group">
                     <input type="password" name="senha" id="senha" placeholder="Senha" required>
                     <button type="button" class="btn btn-outline-secondary" onclick="toggleSenha()">👁️</button>
