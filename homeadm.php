@@ -79,6 +79,12 @@
         </form>
 
         <div class="d-grid gap-2 mb-2">
+            <!-- Novo botão para outra automação -->
+<!-- Botão para rodar nfe_downloader_constant.py -->
+<form action="executar_nfe_downloader.php" method="post" class="d-grid gap-2 mb-3">
+    <button type="submit" class="btn btn-primary btn-lg">Executar NFe Downloader</button>
+</form>
+
             <button onclick="window.location.href='cadastroadm.php'" class="btn btn-outline-primary">Cadastro</button>
             <button onclick="window.location.href='configuracoesadm.php'" class="btn btn-outline-primary">Configurações</button>
             <button onclick="window.location.href='relatorio_execucaoadm.php'" class="btn btn-outline-primary">Relatório de Execução</button>

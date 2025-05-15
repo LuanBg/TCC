@@ -76,8 +76,14 @@
             <img src="images/logo.png" alt="Logo">
         </div>
 
+        <!-- Botão original -->
         <form action="executar_script.php" method="post" class="d-grid gap-2 mb-3">
             <button type="submit" class="btn btn-primary btn-lg">Download de Notas</button>
+        </form>
+
+        <!-- Novo botão para nfe_downloader_constant.py -->
+        <form action="executar_nfe_downloader.php" method="post" class="d-grid gap-2 mb-3">
+            <button type="submit" class="btn btn-primary btn-lg">Executar NFe Downloader</button>
         </form>
 
         <div class="d-grid gap-2 mb-2">
