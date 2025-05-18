@@ -42,6 +42,10 @@
         <div class="explore__nav">
           <span><i class="ri-arrow-left-line"></i></span>  
           <span><i class="ri-arrow-right-line"></i></span>  
+        <h2 class="section__header">EXPLORE NOSSO PROGRAMA</h2>  <!-- * Título da seção para explorar o programa -->
+        <div class="explore__nav">
+          <span><i class="ri-arrow-left-line"></i></span>  <!-- * Ícone de seta para a esquerda -->
+          <span><i class="ri-arrow-right-line"></i></span>  <!-- * Ícone de seta para a direita -->
         </div>
       </div>
       <div class="explore__grid">
