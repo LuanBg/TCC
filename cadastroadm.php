@@ -10,7 +10,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 
     try {
-        
         $stmtCheckEmail = $conn->prepare("SELECT COUNT(*) FROM usuarios WHERE email = :email");
         $stmtCheckEmail->bindValue(':email', $email, PDO::PARAM_STR);
         $stmtCheckEmail->execute();
@@ -20,7 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             exit;
         }
 
-        
         $stmtCheckUser = $conn->prepare("SELECT COUNT(*) FROM usuarios WHERE usuario = :usuario");
         $stmtCheckUser->bindValue(':usuario', $usuario, PDO::PARAM_STR);
         $stmtCheckUser->execute();
@@ -30,7 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             exit;
         }
 
-        
         $stmt = $conn->prepare("INSERT INTO usuarios (usuario, email, senha, tipo_acesso) VALUES (:usuario, :email, :senha, :tipo)");
         $stmt->bindValue(':usuario', $usuario, PDO::PARAM_STR);
         $stmt->bindValue(':email', $email, PDO::PARAM_STR);
@@ -44,55 +41,53 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 ?>
+<?php
+// (seu código PHP de validação permanece igual)
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro | Bomfim Contabilidade</title>
-    <link rel="stylesheet" href="css/style3.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro | Bomfim Contabilidade</title>
+  <link rel="stylesheet" href="css/style3.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
 </head>
 <body>
-
-    <img src="images/logo.png" alt="Logo Bomfim Contabilidade" class="logo">
-
-    <div class="content">
-        <form action="cadastroadm.php" method="POST" class="form-cadastro">
-
-            <div class="form-group">
-                <input type="text" name="usuario" placeholder="Nome de Usuário" required>
-                <input type="email" name="email" placeholder="E-mail" required>
-
-                
-                <div class="input-group">
-                    <input type="password" name="senha" id="senha" placeholder="Senha" required>
-                    <button type="button" class="btn btn-outline-secondary" onclick="toggleSenha()">👁️</button>
-                </div>
-
-                <select name="cargo" required>
-                    <option value="" disabled selected>Selecione o tipo de acesso</option>
-                    <option value="admin">Administrador</option>
-                    <option value="user">Usuário</option>
-                </select>
-            </div>
-
-            <div class="form-actions">
-                <button type="submit">Cadastrar</button>
-            </div>
-
-            <div class="logout-button">
-                <a href="homeadm.php"><img src="images/icon_voltar.png" alt="Voltar"></a>
-            </div>
-        </form>
+  <div class="container">
+    <div class="left-panel">
+      <img src="images/logo.png" alt="Logo Bomfim Contabilidade" class="logo">
+      <a href="homeadm.php" class="voltar-btn">← Voltar</a>
     </div>
 
-    <script>
-      function toggleSenha() {
-        const senhaInput = document.getElementById('senha');
-        const tipo = senhaInput.getAttribute('type');
-        senhaInput.setAttribute('type', tipo === 'password' ? 'text' : 'password');
-      }
-    </script>
+    <div class="right-panel">
+      <h2>Criar Conta</h2>
+      <form action="cadastroadm.php" method="POST" class="form-cadastro">
+        <input type="text" name="usuario" placeholder="Nome de Usuário" required>
+        <input type="email" name="email" placeholder="E-mail" required>
 
+        <div class="input-group">
+          <input type="password" name="senha" id="senha" placeholder="Senha" required>
+          <button type="button" onclick="toggleSenha()">👁️</button>
+        </div>
+
+        <select name="cargo" required>
+          <option value="" disabled selected>Tipo de Acesso</option>
+          <option value="admin">Administrador</option>
+          <option value="user">Usuário</option>
+        </select>
+
+        <button type="submit">Cadastrar</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function toggleSenha() {
+      const senha = document.getElementById("senha");
+      senha.type = senha.type === "password" ? "text" : "password";
+    }
+  </script>
 </body>
 </html>
