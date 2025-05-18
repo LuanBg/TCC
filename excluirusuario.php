@@ -4,21 +4,27 @@ include('conexao.php');
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     try {
-        $conn->beginTransaction();
+        $pdo->beginTransaction();
         
-        $stmt1 = $conn->prepare("DELETE FROM gerenciamento_usuarios WHERE id = :id");
+        
+        $stmt1 = $pdo->prepare("DELETE FROM gerenciamento_usuarios WHERE id = :id");
         $stmt1->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt1->execute();
         
-        $stmt2 = $conn->prepare("DELETE FROM usuarios WHERE id = :id");
+        
+        $stmt2 = $pdo->prepare("DELETE FROM usuarios WHERE id = :id");
         $stmt2->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt2->execute();
         
-        $conn->commit();
-                header("Location: gerenciamento.php");
+        
+        $pdo->commit();
+        
+        
+        header("Location: gerenciamento.php");
         exit;
     } catch (PDOException $e) {
-        $conn->rollBack();
+        
+        $pdo->rollBack();
         echo "Erro ao excluir o usuário: " . $e->getMessage();
     }
 } else {
