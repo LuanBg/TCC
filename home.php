@@ -38,10 +38,10 @@
 
     <section class="section__container explore__container">
       <div class="explore__header">
-        <h2 class="section__header">EXPLORE NOSSO PROGRAMA</h2>  <!-- * Título da seção para explorar o programa -->
+        <h2 class="section__header">EXPLORE NOSSO PROGRAMA</h2> 
         <div class="explore__nav">
-          <span><i class="ri-arrow-left-line"></i></span>  <!-- * Ícone de seta para a esquerda -->
-          <span><i class="ri-arrow-right-line"></i></span>  <!-- * Ícone de seta para a direita -->
+          <span><i class="ri-arrow-left-line"></i></span>  
+          <span><i class="ri-arrow-right-line"></i></span>  
         </div>
       </div>
       <div class="explore__grid">
