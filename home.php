@@ -41,61 +41,58 @@
   </header>
 
   <section class="section__container explore__container">
+
     <div class="explore__header">
-      <h2 class="section__header">RELATORIO DE EXECUÇÃO </h2> <!-- * Título da seção para explorar o programa -->
+      <h2 class="section__header">RELATORIO DE EXECUÇÃO </h2> 
       <!--
          <div class="explore__nav">
           <span><i class="ri-arrow-left-line"></i></span>   * Ícone de seta para a esquerda 
           <span><i class="ri-arrow-right-line"></i></span>  * Ícone de seta para a direita 
         </div> 
-    -->
-    </div>
-    <div class="explore__grid">
-      <div class="explore__card">
-        <span><i class="ri-boxing-fill"></i></span> <!-- * Ícone de boxe -->
-        <h4>Toltal processadas</h4>
-        <div class="row g-4">
-          <div class="col-md-3">
-            <h3><?= $stats['total'] ?></h3>
-          </div>
+      -->
+
+      <div class="explore__grid">
+        <div class="explore__card">
+          <span><i class="ri-boxing-fill"></i></span> <!-- * Total processadas -->
+          <h4>Total processadas</h4>
+          <h3><?= $stats['total'] ?></h3>
         </div>
       </div>
-      <!-- * Repetição dos cards de diferentes programas, com seus respectivos ícones, títulos, descrições e links -->
-    </div>
-    <div class="explore__grid">
-      <div class="explore__card">
-        <span><i class="ri-boxing-fill"></i></span> <!-- * Ícone de boxe -->
-        <h4>Toltal processadas</h4>
-        <p>
-          Abrace a essência da força enquanto exploramos suas várias dimensões...
-        </p>
+
+      <div class="explore__grid">
+        <div class="explore__card">
+          <span><i class="ri-boxing-fill"></i></span> <!-- * Com sucesso -->
+          <h4>Com Sucesso</h4>
+          <h3><?= $stats['sucesso'] ?></h3>
+        </div>
       </div>
-      <!-- * Repetição dos cards de diferentes programas, com seus respectivos ícones, títulos, descrições e links -->
-    </div>
-    <div class="explore__grid">
-      <div class="explore__card">
-        <span><i class="ri-boxing-fill"></i></span> <!-- * Ícone de boxe -->
-        <h4>Toltal processadas</h4>
-        <p>
-          Abrace a essência da força enquanto exploramos suas várias dimensões...
-        </p>
+
+      <div class="explore__grid">
+        <div class="explore__card">
+          <span><i class="ri-boxing-fill"></i></span> <!-- * ÍCom erro -->
+          <h4>Com Erro</h4>
+          <h3><?= $stats['erro'] ?></h3>
+        </div>
       </div>
-      <!-- * Repetição dos cards de diferentes programas, com seus respectivos ícones, títulos, descrições e links -->
+      <div class="explore__grid">
+        <div class="explore__card">
+          <span><i class="ri-boxing-fill"></i></span> <!-- * Duração -->
+          <h4>Com Erro</h4>
+          <h3><?= number_format($stats['duracao_media'], 2) ?></h3>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="section__container class__container">
     <div class="class__image">
       <span class="bg__blur"></span> <!-- * Efeito de desfoque aplicado ao fundo da imagem -->
-      <img src="images/class-1.jpg" alt="aula" class="class__img-1" /> <!-- * Imagem representando uma aula -->
-      <img src="images/class-2.jpg" alt="aula" class="class__img-2" /> <!-- * Segunda imagem representando uma aula -->
     </div>
     <div class="class__content">
-      <h2 class="section__header">AULA QUE VOCÊ ENCONTRARÁ AQUI</h2> <!-- * Título da seção sobre as aulas oferecidas -->
-      <p>
-        Liderada pela nossa equipe de instrutores especialistas...
-      </p>
-      <button class="btn">Reservar uma Aula</button> <!-- * Botão de ação para reservar uma aula -->
+      <h2 class="section__header">DOWNLOAD DAS NOTAS</h2> 
+    
+      <button class="btn">Download pelo FSist</button>
+      <button class="btn">Download pelo Danfe</button> 
     </div>
   </section>
 
@@ -186,3 +183,4 @@
 </body>
 
 </html>
+

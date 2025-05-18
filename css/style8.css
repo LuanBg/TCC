@@ -3,12 +3,11 @@
 :root {
   --primary-color: #ffffff;
   --primary-color-light: #B2DF76;
-  --primary-color-extra-light: #ffffff;
-  ;
+  --primary-color-extra-light: #00467D;
   --secondary-color: #00467D;
   --secondary-color-dark: #B2DF76;
   --text-light: #020000;
-  --white: #00467D;
+  --white: #ffffff;
   --max-width: 1200px;
 }
 
@@ -303,8 +302,8 @@ nav {
 }
 
 .class__content .section__header {
-  text-align: left;
-  max-width: 400px;
+  text-align: center;
+  max-width: 450px;
 }
 
 .class__content p {
