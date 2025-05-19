@@ -19,20 +19,19 @@ try {
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gerenciamento / Bomfim Contabilidade</title>
-  <link rel="stylesheet" href="css/style5.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style2.css" />
 </head>
 <body>
-  <div class="container mt-4">
-    <div class="text-center mb-4">
-      <img src="images/logo.png" alt="Bomfim Contabilidade" class="img-fluid" style="max-width: 200px;">
+  <div class="container">
+    <div class="logo-container">
+      <img src="images/logo.png" alt="Bomfim Contabilidade" class="logo" />
     </div>
 
-    <div class="mb-4">
-      <input type="text" id="pesquisa" class="form-control" placeholder="Pesquisar Usuário">
+    <div class="input-group">
+      <input type="text" id="pesquisa" class="input-pesquisa" placeholder="Pesquisar Usuário" />
     </div>
 
     <h2>Gerenciamento de Usuários</h2>
@@ -45,7 +44,7 @@ try {
             $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             if (count($usuarios) > 0) {
-                echo '<table class="table table-striped">';
+                echo '<table class="tabela-usuarios">';
                 echo '<thead>
                         <tr>
                           <th>ID</th>
@@ -63,8 +62,8 @@ try {
                     echo '<td>' . htmlspecialchars($usuario['email']) . '</td>';
                     echo '<td>' . htmlspecialchars($usuario['tipo_acesso']) . '</td>';
                     echo '<td>
-                            <a href="editarusuario.php?id=' . $usuario['usuario_id'] . '" class="btn btn-primary btn-sm">Editar</a>
-                            <a href="excluirusuario.php?id=' . $usuario['usuario_id'] . '" class="btn btn-danger btn-sm" onclick="return confirm(\'Tem certeza que deseja excluir este usuário?\');">Excluir</a>
+                            <a href="editarusuario.php?id=' . $usuario['usuario_id'] . '" class="btn editar">Editar</a>
+                            <a href="excluirusuario.php?id=' . $usuario['usuario_id'] . '" class="btn excluir" onclick="return confirm(\'Tem certeza que deseja excluir este usuário?\');">Excluir</a>
                           </td>';
                     echo '</tr>';
                 }
@@ -74,14 +73,14 @@ try {
                 echo '<p>Nenhum usuário encontrado.</p>';
             }
         } catch (PDOException $e) {
-            echo '<div class="alert alert-danger">Erro: ' . $e->getMessage() . '</div>';
+            echo '<div class="alert error">Erro: ' . $e->getMessage() . '</div>';
         }
     } else {
-        echo '<div class="alert alert-danger">Erro na conexão com o banco de dados.</div>';
+        echo '<div class="alert error">Erro na conexão com o banco de dados.</div>';
     }
     ?>
 
-    <div class="mt-3">
+    <div class="acoes-geral">
       <button onclick="location.reload();" class="btn btn-success">Atualizar Lista</button>
       <a href="homeadm.php" class="btn btn-secondary">Voltar</a>
     </div>

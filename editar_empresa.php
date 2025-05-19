@@ -43,11 +43,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #fff;
         }
 
         .card-verde {
-            background-color: #b9ec9b;
+            background-color: #fff;
             border-radius: 15px;
             padding: 30px;
             max-width: 500px;
@@ -56,14 +56,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         .btn-verde {
-            background-color: #28a745;
-            border-color: #28a745;
+            background-color: #B2DF76;
+            border-color: #B2DF76;
             color: white;
         }
 
         .btn-verde:hover {
-            background-color: #218838;
-            border-color: #1e7e34;
+            background-color: #B2DF76;
+            border-color: #B2DF76;
         }
     </style>
 </head>

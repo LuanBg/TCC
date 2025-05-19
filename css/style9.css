@@ -1,0 +1,121 @@
+/* RESET BASE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #ffffff;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* TOPO */
+.top-header {
+  width: 100%;
+  max-width: 1100px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-wrapper .logo {
+  max-width: 220px;
+}
+
+.top-nav .voltar-btn {
+  text-decoration: none;
+  color: #B2DF76;
+  font-weight: 500;
+  border: 1px solid #B2DF76;
+  padding: 10px 18px;
+  border-radius: 6px;
+  background-color: #ffffff;
+  transition: all 0.25s ease;
+}
+
+.top-nav .voltar-btn:hover {
+  background-color: #B2DF76;
+  color: #fff;
+}
+
+/* CONTAINER DO FORM */
+.container {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 45px 35px;
+  max-width: 520px;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-top: 40px;
+}
+
+.right-panel h2 {
+  font-size: 26px;
+  margin-bottom: 25px;
+  color: #222;
+  text-align: center;
+}
+
+/* FORMULÁRIO */
+.form-cadastro {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-cadastro input[type="text"] {
+  padding: 13px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-cadastro input[type="text"]:focus {
+  border-color: #B2DF76;
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+  outline: none;
+}
+
+/* BOTÃO PRINCIPAL */
+.btn-principal {
+  padding: 14px;
+  background-color: #B2DF76;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-principal:hover {
+  background-color: #B2DF76;
+}
+
+/* RESPONSIVO */
+@media (max-width: 600px) {
+  .top-header {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .container {
+    padding: 35px 25px;
+    margin-top: 30px;
+  }
+
+  .right-panel h2 {
+    font-size: 22px;
+  }
+}
