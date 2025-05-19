@@ -402,6 +402,7 @@ nav {
 }
 
 .price__card h3 {
+  
   padding-bottom: 1rem;
   margin-bottom: 2rem;
   font-size: 2rem;
@@ -458,6 +459,8 @@ nav {
 }
 
 .review__content h4 {
+  display: flex;
+  justify-content: center;
   margin-bottom: 1rem;
   font-size: 1.3rem;
   font-weight: 600;
@@ -669,3 +672,4 @@ nav {
   cursor: pointer;
   transition: transform 0.3s ease;
 }
+
